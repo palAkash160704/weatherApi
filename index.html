@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weatherly — Open-Meteo Edition</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌤️ SkyCast — Your Instant Weather Buddy</h1>
+    <div class="searchbar">
+      <input id="city" placeholder="Enter a city (e.g. Paris)" />
+      <button id="go">Get Weather</button>
+      <button id="geo">Use My Location</button>
+    </div>
+
+    <div class="card">
+      <div class="big-temp" id="temp">--°C</div>
+      <div id="summary" class="muted">Enter a city or use location</div>
+    </div>
+
+    <div class="forecast" id="forecast"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
