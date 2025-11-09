@@ -3,24 +3,101 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Weatherly — Open-Meteo Edition</title>
+  <title>SkyCast Pro - Advanced Weather Intelligence</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <canvas class="weather-particles" id="particles"></canvas>
+  
   <div class="container">
-    <h1>🌤️ SkyCast — Your Instant Weather Buddy</h1>
-    <div class="searchbar">
-      <input id="city" placeholder="Enter a city (e.g. Paris)" />
-      <button id="go">Get Weather</button>
-      <button id="geo">Use My Location</button>
+    <header>
+      <h1>🌤 SkyCast Pro</h1>
+      <p class="tagline">Advanced Weather Intelligence at Your Fingertips</p>
+    </header>
+
+    <div class="search-section">
+      <div class="search-bar">
+        <input id="city" placeholder="Search any city worldwide..." />
+        <button class="btn-primary" id="go">🔍 Search</button>
+        <button class="btn-secondary" id="geo">📍 My Location</button>
+        <div class="unit-toggle">
+          <button class="unit-btn active" data-unit="C">°C</button>
+          <button class="unit-btn" data-unit="F">°F</button>
+        </div>
+      </div>
+      
+      <div class="quick-cities">
+        <span style="color: #666; font-weight: 600;">Quick Access:</span>
+        <div class="quick-city" data-city="London">🇬🇧 London</div>
+        <div class="quick-city" data-city="New York">🇺🇸 New York</div>
+        <div class="quick-city" data-city="Tokyo">🇯🇵 Tokyo</div>
+        <div class="quick-city" data-city="Paris">🇫🇷 Paris</div>
+        <div class="quick-city" data-city="Dubai">🇦🇪 Dubai</div>
+      </div>
+
+      <div class="saved-locations" id="savedLocations"></div>
     </div>
 
-    <div class="card">
-      <div class="big-temp" id="temp">--°C</div>
-      <div id="summary" class="muted">Enter a city or use location</div>
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>Fetching weather data...</p>
     </div>
 
-    <div class="forecast" id="forecast"></div>
+    <div id="weatherContent" class="hidden">
+      <div class="main-weather">
+        <div class="current-card">
+          <div class="weather-icon" id="weatherIcon">🌤</div>
+          <div class="temperature" id="temp">--°</div>
+          <div class="location" id="location">--</div>
+          <div class="description" id="description">--</div>
+        </div>
+
+        <div class="stats-card">
+          <h3 class="section-title">📊 Weather Stats</h3>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-value" id="humidity">--%</span>
+              <span class="stat-label">💧 Humidity</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="windSpeed">-- km/h</span>
+              <span class="stat-label">🌬 Wind Speed</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="precipitation">--%</span>
+              <span class="stat-label">☔ Precipitation</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="feelsLike">--°</span>
+              <span class="stat-label">🌡 Feels Like</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="forecast-section">
+        <h3 class="section-title">⏰ Detailed Forecast</h3>
+        <div class="forecast-tabs">
+          <div class="tab active" data-tab="hourly">Hourly (24h)</div>
+          <div class="tab" data-tab="weekly">7-Day Forecast</div>
+        </div>
+        <div class="forecast-container" id="forecast"></div>
+      </div>
+
+      <div class="insights-section">
+        <h3 class="section-title">💡 Smart Insights</h3>
+        <div id="insights"></div>
+      </div>
+
+      <div class="comparison-section">
+        <h3 class="section-title">🌍 Compare Cities</h3>
+        <div class="compare-input">
+          <input id="compareCity" placeholder="Add city to compare..." />
+          <button class="btn-primary" id="addCompare">+ Add</button>
+        </div>
+        <div class="comparison-grid" id="comparison"></div>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
